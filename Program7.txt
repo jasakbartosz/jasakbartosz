@@ -1,0 +1,32 @@
+class Base
+{
+public:
+    virtual void setParent(Base* pParent);
+    virtual void addChild(Base* pChild);
+    // for simplicity I wont implement all functions
+private:
+    Base* m_pParent;
+    std::vector<Base*> m_pChildren;
+};
+
+classDerivedOne:publicBase
+{
+public:
+    // virtual function override
+    int custom(){return1337;}
+}
+classDerivedTwo:publicBase
+{
+public:
+    int customtwo(){return1337+1;}
+}
+main(xyz)
+{
+    DerivedOne* d1 =newDerivedOne();
+    DerivedTwo d2 =newDerivedTwo();
+    d1->addChild(d2);
+    for(auto e : d1->getChildren())
+    {
+        std::cout <<static_cast<DerivedOne*>(e)->custom(); std::endl;// returns 1337 twice instead of once
+    }
+}
