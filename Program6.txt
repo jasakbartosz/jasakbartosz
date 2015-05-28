@@ -1,0 +1,24 @@
+#include <Windows.h>
+#include <iostream>
+ 
+ 
+typedef int(__stdcall *message)(HWND, LPCTSTR, LPCTSTR, UINT);
+ 
+int main(int argc, wchar_t* argv[])
+{
+ 
+HMODULE h = LoadLibraryA("kernel32.dll"); 
+if (!h) {
+        std::cerr << "LoadLibrary failed." << std::endl;
+        return -1;
+    }
+message _FindResource = (message)GetProcAddress(h, "MessageBoxA");
+ if (!_FindResource) {
+        std::cerr << "GetProcAddress failed." << std::endl;
+        return -1;
+    }
+(*_FindResource)(NULL, L"Hello", L"Hello",MB_OK);
+FreeLibrary(h);
+ 
+return 0;
+}
