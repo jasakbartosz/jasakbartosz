@@ -1,0 +1,86 @@
+#include <iostream>
+#include <windows.h>
+#include <cstdlib>
+#include <conio.h>
+using namespace std;
+ 
+ int pobierz(unsigned int liczba){
+           if(liczba>1000)
+           {
+            cout << "Najwieksza liczba moze byc 1000!\n";
+            cin.clear(); 
+            cin.sync();  
+ 
+                          }
+ 
+            while(!(cin>>liczba)){
+            cout << "Podaj poprawna wartosc: ";
+  cin.clear(); 
+  cin.sync();             
+ 
+                                  }
+            return liczba;
+            }
+ 
+int main()
+{
+    cout << "Witaj w programie - Zgadnij liczbe" << endl
+         << "Podaj dowolna liczbe: ";
+start:
+    clock_t start, finish;
+ 
+double czas;
+start = clock();
+ 
+    int zgadywana = 0, proby=0;
+    srand( time( NULL ) );
+  int wylosowana_liczba =( rand() % 1000 );
+while(zgadywana != wylosowana_liczba)
+{
+ 
+      zgadywana = pobierz(zgadywana);
+ 
+        if(zgadywana>wylosowana_liczba)        
+        cout << "Wylosowana liczba jest mniejsza od twojej, sprobuj ponownie!\n";
+        else if(zgadywana<wylosowana_liczba)                
+                cout << "Wylosowana liczba jest wieksza od twojej, sprobuj ponownie!\n";
+                proby++;
+                }
+ 
+                system("cls");
+                system("color 02");
+cout << "GRATULUJEMY! TWOJA LICZBA TO: " << wylosowana_liczba << endl;
+cout << "LICZBA PROB: " << proby << endl;
+finish = clock();
+czas = (double)(finish - start) / CLOCKS_PER_SEC;
+cout << "POSZUKIWANIE LICZBY ZAJELO CI: " << czas << " SEKUND";
+                 Beep(294,600); //d
+                 Beep(349,400); //f
+                 Beep(294,400); //d
+                 Beep(392,300); //g
+                 Beep(294,200); //d
+                 Beep(262,600); //c
+ 
+                 Beep(294,600); //d
+                 Beep(440,400); //a
+                 Beep(294,600); //d
+                 Beep(466,200); //b
+                 Beep(440,200); //a
+                 Beep(349,600); //f
+ 
+                  Beep(294,800); //d
+                  Beep(440,200); //a
+                  Beep(440,200); //a
+                  Beep(294,600); //d  
+        char znak;
+          cout <<"\n\n\n Czy chcesz zagrac ponownie? T/N";
+    znak = getch();  
+ 
+    if(znak == 't')
+    {
+    system("cls");
+        goto start;  
+            }
+ 
+return 0;
+}
